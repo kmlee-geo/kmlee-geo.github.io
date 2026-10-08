@@ -39,6 +39,7 @@
       font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
       font-size: 16px;
       line-height: 1.65;
+      overflow-x: clip;
     }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
@@ -102,8 +103,17 @@
       font-weight: 500;
     }
 
+    /* 시뮬레이션 3개를 높이를 맞춰 한 줄로: flex-grow를 각 영상의 (높이 기준) 폭 비율로 준다 */
+    .sims {
+      display: flex; gap: 12px; align-items: flex-start;
+      width: min(1100px, calc(100vw - 32px));
+      position: relative; left: 50%; transform: translateX(-50%);
+    }
+    .sims > * { min-width: 0; display: block; }
+    .sims video { width: 100%; height: auto; }
+
     /* RT 애니메이션: 흰 바탕에 검은 글씨 (다크 모드에서도 그대로) */
-    .rt-box { background: #fff; aspect-ratio: 260 / 320; max-width: 420px; overflow: hidden; cursor: pointer; }
+    .rt-box { background: #fff; overflow: hidden; cursor: pointer; }
     #rt-screen {
       margin: 0; color: #000; white-space: pre;
       font-family: ui-monospace, Consolas, "Courier New", monospace;
@@ -158,9 +168,16 @@
       </p>
     </section>
 
-    <section id="rt">
-      <h2>Rayleigh–Taylor Instability</h2>
-      <div class="rt-box" id="rt-box"><pre id="rt-screen"></pre></div>
+    <section id="simulations">
+      <h2>Simulations</h2>
+      <div class="sims">
+        <div class="rt-box" id="rt-box" style="flex: 813 1 0; aspect-ratio: 260 / 320"
+             title="Rayleigh–Taylor instability"><pre id="rt-screen"></pre></div>
+        <video src="media/core3d.mp4" style="flex: 854 1 0; aspect-ratio: 700 / 820"
+               autoplay muted loop playsinline title="Core formation (3D)"></video>
+        <video src="media/plastic_impact.mp4" style="flex: 1429 1 0; aspect-ratio: 900 / 630"
+               autoplay muted loop playsinline title="Impact: equivalent plastic strain"></video>
+      </div>
     </section>
 
     <section id="research">
