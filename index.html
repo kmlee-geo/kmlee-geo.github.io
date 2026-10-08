@@ -60,7 +60,7 @@
       display: flex; gap: 32px; align-items: center;
       padding: 56px 0 40px;
     }
-    /* 프로필 사진: images/profile.jpg 를 넣고 아래 .avatar 안의 <span>을 <img>로 바꾸면 된다 */
+    /* 프로필 사진: images/profile-square.jpg (정사각형으로 잘라서 사용) */
     .avatar {
       flex: none;
       width: 148px; height: 148px; border-radius: 50%;
@@ -79,8 +79,10 @@
       font-size: 38px; line-height: 1.15;
       margin: 0 0 8px;
     }
-    .affil { color: var(--muted); margin: 0; }
-    .affil strong { color: var(--text); font-weight: 500; }
+    .role { color: var(--accent); font-weight: 600; margin: 0 0 12px; }
+    .affil { color: var(--muted); margin: 0; line-height: 1.5; }
+    .affil span { display: block; }
+    .affil .univ { color: var(--text); font-weight: 500; margin-top: 6px; }
 
     section { padding: 28px 0; border-top: 1px solid var(--line); }
     h2 {
@@ -125,14 +127,16 @@
   <main class="wrap">
     <header class="hero">
       <div class="avatar" aria-label="Profile photo">
-        <!-- 사진을 넣을 때: <img src="images/profile.jpg" alt="Kyeong-Min Lee"> 로 교체 -->
-        <span>KL</span>
+        <img src="images/profile-square.jpg" alt="Kyeong-Min Lee">
       </div>
       <div>
         <h1>Kyeong-Min Lee</h1>
+        <p class="role">Ph.D. Student</p>
         <p class="affil">
-          <strong>Interdisciplinary Program in Earth Environmental System Science &amp; Engineering</strong><br>
-          Kangwon National University, Chuncheon, Republic of Korea
+          <span>Interdisciplinary Program in</span>
+          <span>Earth Environmental System Science &amp; Engineering</span>
+          <span class="univ">Kangwon National University</span>
+          <span>Chuncheon, Republic of Korea</span>
         </p>
       </div>
     </header>
@@ -140,7 +144,7 @@
     <section id="about">
       <h2>About</h2>
       <p>
-        I am a researcher at Kangwon National University, South Korea.
+        I am a Ph.D. student at Kangwon National University, South Korea.
         My work uses high performance computing to study geophysical fluid dynamics,
         with a focus on multiphase flow and the differentiation of planetary interiors.
       </p>
