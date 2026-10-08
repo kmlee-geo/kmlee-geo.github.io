@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kyeong-Min Lee</title>
+  <meta name="description" content="Kyeong-Min Lee — Kangwon National University. High performance computing for geophysical fluid dynamics, multiphase flow, and planetary differentiation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fbfaf7;
+      --surface: #ffffff;
+      --text: #1d1f23;
+      --muted: #5c626b;
+      --line: #e4e1da;
+      --accent: #1f5f8b;
+      --accent-soft: #e7f0f6;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #131518;
+        --surface: #1a1d21;
+        --text: #e8e9eb;
+        --muted: #9aa1aa;
+        --line: #2b2f35;
+        --accent: #7db8e0;
+        --accent-soft: #1c2a35;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap { display: flex; gap: 20px; align-items: center; height: 52px; overflow-x: auto; }
+    nav .brand { font-weight: 600; color: var(--text); margin-right: auto; white-space: nowrap; }
+    nav a.link { color: var(--muted); font-size: 14px; white-space: nowrap; }
+    nav a.link:hover { color: var(--text); text-decoration: none; }
+
+    header.hero {
+      display: flex; gap: 32px; align-items: center;
+      padding: 56px 0 40px;
+    }
+    /* 프로필 사진: images/profile.jpg 를 넣고 아래 .avatar 안의 <span>을 <img>로 바꾸면 된다 */
+    .avatar {
+      flex: none;
+      width: 148px; height: 148px; border-radius: 50%;
+      background: var(--accent-soft);
+      border: 1px solid var(--line);
+      display: grid; place-items: center;
+      overflow: hidden;
+      color: var(--accent);
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 44px;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    h1 {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-weight: 600;
+      font-size: 38px; line-height: 1.15;
+      margin: 0 0 8px;
+    }
+    .affil { color: var(--muted); margin: 0; }
+    .affil strong { color: var(--text); font-weight: 500; }
+
+    section { padding: 28px 0; border-top: 1px solid var(--line); }
+    h2 {
+      font-size: 13px; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 16px;
+    }
+
+    .interests { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+    .interests li {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-weight: 500;
+    }
+
+    .placeholder { color: var(--muted); font-style: italic; margin: 0; }
+
+    footer { padding: 32px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+
+    @media (max-width: 560px) {
+      header.hero { flex-direction: column; align-items: flex-start; gap: 20px; padding-top: 36px; }
+      .avatar { width: 112px; height: 112px; font-size: 34px; }
+      h1 { font-size: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="#">Kyeong-Min Lee</a>
+      <a class="link" href="#about">About</a>
+      <a class="link" href="#research">Research</a>
+      <a class="link" href="#publications">Publications</a>
+      <a class="link" href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <header class="hero">
+      <div class="avatar" aria-label="Profile photo">
+        <!-- 사진을 넣을 때: <img src="images/profile.jpg" alt="Kyeong-Min Lee"> 로 교체 -->
+        <span>KL</span>
+      </div>
+      <div>
+        <h1>Kyeong-Min Lee</h1>
+        <p class="affil">
+          <strong>Interdisciplinary Program in Earth Environmental System Science &amp; Engineering</strong><br>
+          Kangwon National University, Chuncheon, Republic of Korea
+        </p>
+      </div>
+    </header>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        I am a researcher at Kangwon National University, South Korea.
+        My work uses high performance computing to study geophysical fluid dynamics,
+        with a focus on multiphase flow and the differentiation of planetary interiors.
+      </p>
+    </section>
+
+    <section id="research">
+      <h2>Research Interests</h2>
+      <ul class="interests">
+        <li>High performance computing for geophysical fluid dynamics</li>
+        <li>Multiphase flow</li>
+        <li>Planetary differentiation</li>
+      </ul>
+    </section>
+
+    <section id="publications">
+      <h2>Publications</h2>
+      <p class="placeholder">Coming soon.</p>
+      <!--
+        논문을 추가할 때 예시:
+        <p>Lee, K.-M., ... (2026). Title. <em>Journal</em>, vol, pages. <a href="https://doi.org/...">DOI</a></p>
+      -->
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>
+        Kangwon National University, Chuncheon, Republic of Korea
+        <!-- 이메일, Google Scholar, ORCID, GitHub 링크를 여기에 추가 -->
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 Kyeong-Min Lee</div>
+  </footer>
+</body>
+</html>
