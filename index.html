@@ -102,6 +102,14 @@
       font-weight: 500;
     }
 
+    /* RT 애니메이션: 흰 바탕에 검은 글씨 (다크 모드에서도 그대로) */
+    .rt-box { background: #fff; aspect-ratio: 260 / 320; max-width: 420px; overflow: hidden; }
+    #rt-screen {
+      margin: 0; color: #000; white-space: pre;
+      font-family: ui-monospace, Consolas, "Courier New", monospace;
+      letter-spacing: 0; font-kerning: none; font-variant-ligatures: none;
+    }
+
     .placeholder { color: var(--muted); font-style: italic; margin: 0; }
 
     footer { padding: 32px 0 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
@@ -150,6 +158,11 @@
       </p>
     </section>
 
+    <section id="rt">
+      <h2>Rayleigh–Taylor Instability</h2>
+      <div class="rt-box" id="rt-box"><pre id="rt-screen"></pre></div>
+    </section>
+
     <section id="research">
       <h2>Research Interests</h2>
       <ul class="interests">
@@ -177,6 +190,56 @@
       </p>
     </section>
   </main>
+
+  <script src="rt-frames.js"></script>
+  <script>
+    // 1비트 프레임을 4x8 픽셀 단위로 묶어 ASCII 문자로 그린다
+    (() => {
+      const W = 260, H = 320, N = 150, ROWB = W / 8, FB = (W * H) / 8;
+      const CW = 4, CH = 8, COLS = W / CW, ROWS = H / CH, RAMP = " .:-=+*#%@";
+      const raw = Uint8Array.from(atob(window.RT_B64), c => c.charCodeAt(0));
+      const px = (f, x, y) => (raw[f * FB + y * ROWB + (x >> 3)] >> (7 - (x & 7))) & 1;
+      const frames = [];
+      const frame = f => frames[f] ??= (() => {
+        let out = "";
+        for (let cy = 0; cy < H; cy += CH) {
+          for (let cx = 0; cx < W; cx += CW) {
+            let s = 0;
+            for (let dy = 0; dy < CH; dy++) for (let dx = 0; dx < CW; dx++) s += px(f, cx + dx, cy + dy);
+            // 원본이 체커보드 디더링이라 꽉 찬 칸도 픽셀의 절반만 켜져 있다
+            out += RAMP[Math.round(Math.min(1, s / (CW * CH / 2)) * (RAMP.length - 1))];
+          }
+          out += "\n";
+        }
+        return out;
+      })();
+
+      const box = document.getElementById("rt-box"), screen = document.getElementById("rt-screen");
+      // 글자 크기를 상자에 맞춘다: 실제 글꼴의 글자 폭(em 단위)을 재서 쓴다
+      const probe = document.createElement("span");
+      probe.style.cssText = "position:absolute;visibility:hidden;font-size:100px";
+      probe.textContent = "@".repeat(10);
+      screen.appendChild(probe);
+      const adv = probe.getBoundingClientRect().width / 1000;
+      probe.remove();
+      const fit = () => {
+        screen.style.fontSize = box.clientWidth / (COLS * adv) + "px";
+        screen.style.lineHeight = box.clientHeight / ROWS + "px";
+      };
+      new ResizeObserver(fit).observe(box);
+
+      let i = 0, visible = true;
+      new IntersectionObserver(([e]) => visible = e.isIntersecting).observe(box);
+      screen.textContent = frame(0);
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      // 10 fps, 화면에 보일 때만 넘긴다
+      setInterval(() => {
+        if (!visible || document.hidden) return;
+        i = (i + 1) % N;
+        screen.textContent = frame(i);
+      }, 100);
+    })();
+  </script>
 
   <footer>
     <div class="wrap">© 2026 Kyeong-Min Lee</div>
