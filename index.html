@@ -103,7 +103,7 @@
     }
 
     /* RT 애니메이션: 흰 바탕에 검은 글씨 (다크 모드에서도 그대로) */
-    .rt-box { background: #fff; aspect-ratio: 260 / 320; max-width: 420px; overflow: hidden; }
+    .rt-box { background: #fff; aspect-ratio: 260 / 320; max-width: 420px; overflow: hidden; cursor: pointer; }
     #rt-screen {
       margin: 0; color: #000; white-space: pre;
       font-family: ui-monospace, Consolas, "Courier New", monospace;
@@ -231,10 +231,12 @@
       let i = 0, visible = true;
       new IntersectionObserver(([e]) => visible = e.isIntersecting).observe(box);
       screen.textContent = frame(0);
-      if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      // 클릭하면 멈춤/재생
+      let playing = true;
+      box.addEventListener("click", () => playing = !playing);
       // 10 fps, 화면에 보일 때만 넘긴다
       setInterval(() => {
-        if (!visible || document.hidden) return;
+        if (!playing || !visible) return;
         i = (i + 1) % N;
         screen.textContent = frame(i);
       }, 100);
