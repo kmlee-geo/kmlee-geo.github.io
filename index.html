@@ -83,6 +83,7 @@
     .role { color: var(--accent); font-weight: 600; margin: 0 0 12px; }
     .affil { color: var(--muted); margin: 0; line-height: 1.5; }
     .affil span { display: block; }
+    .email { margin: 12px 0 0; font-weight: 500; }
     .affil .univ { color: var(--text); font-weight: 500; margin-top: 6px; }
 
     section { padding: 28px 0; border-top: 1px solid var(--line); }
@@ -112,12 +113,23 @@
     .sims > * { min-width: 0; display: block; }
     .sims video { width: 100%; height: auto; }
 
-    /* RT 애니메이션: 흰 바탕에 검은 글씨 (다크 모드에서도 그대로) */
-    .rt-box { background: #fff; overflow: hidden; cursor: pointer; }
+    /* RT 애니메이션: 배경은 투명(페이지 배경이 비침), 글자만 그린다 */
+    .rt-box { background: transparent; overflow: hidden; cursor: pointer; }
     #rt-screen {
-      margin: 0; color: #000; white-space: pre;
+      margin: 0; color: var(--text); white-space: pre;
       font-family: ui-monospace, Consolas, "Courier New", monospace;
       letter-spacing: 0; font-kerning: none; font-variant-ligatures: none;
+    }
+
+    h3 { font-size: 15px; font-weight: 600; margin: 20px 0 10px; }
+    h3:first-of-type { margin-top: 0; }
+    .pubs { margin: 0; padding-left: 22px; display: grid; gap: 12px; font-size: 15px; }
+    .pubs b { font-weight: 600; }
+    .pubs a { overflow-wrap: anywhere; }
+    .status {
+      display: inline-block; font-size: 12px; font-weight: 600;
+      color: var(--accent); background: var(--accent-soft);
+      border-radius: 4px; padding: 0 6px; margin-right: 4px;
     }
 
     .placeholder { color: var(--muted); font-style: italic; margin: 0; }
@@ -138,7 +150,6 @@
       <a class="link" href="#about">About</a>
       <a class="link" href="#research">Research</a>
       <a class="link" href="#publications">Publications</a>
-      <a class="link" href="#contact">Contact</a>
     </div>
   </nav>
 
@@ -156,6 +167,7 @@
           <span class="univ">Kangwon National University</span>
           <span>Chuncheon, Republic of Korea</span>
         </p>
+        <p class="email"><a href="mailto:kyeong_min@kangwon.ac.kr">kyeong_min@kangwon.ac.kr</a></p>
       </div>
     </header>
 
@@ -191,21 +203,45 @@
 
     <section id="publications">
       <h2>Publications</h2>
-      <p class="placeholder">Coming soon.</p>
-      <!--
-        논문을 추가할 때 예시:
-        <p>Lee, K.-M., ... (2026). Title. <em>Journal</em>, vol, pages. <a href="https://doi.org/...">DOI</a></p>
-      -->
+      <h3>First author</h3>
+      <ol class="pubs">
+        <li>
+          <b>Lee, K.-M.</b>, Jang, D.-K., Thieulot, C., &amp; So, B.-D. (2026).
+          High-Performance Geodynamics on GPUs Using the PETSc CUDA Backend (GAUZZ v1.0.0).
+          <span class="status">Accepted</span>
+          <a href="https://egusphere.copernicus.org/preprints/2026/egusphere-2026-2528/">Preprint (EGUsphere)</a>
+        </li>
+        <li>
+          <b>Lee, K.-M.</b>, Kim, H.-I., Jang, D.-K., &amp; So, B.-D. (2024).
+          A comparative study of 2D numerical simulations using vector and potential methods for extending 3D modeling of planetary evolution.
+          <em>Geosciences Journal</em>, 28(4), 465–481.
+          <a href="https://doi.org/10.1007/s12303-024-0013-5">doi:10.1007/s12303-024-0013-5</a>
+        </li>
+      </ol>
+
+      <h3>Co-author</h3>
+      <ol class="pubs">
+        <li>
+          Seong, M., Kim, H.-S., <b>Lee, K.-M.</b>, Kim, J., &amp; So, B.-D. (2026).
+          Numerical Modeling of Subduction Zone Thermal Structure with Firedrake and Gmsh.
+          <em>Ocean Science Journal</em>, 61(3), 43.
+          <a href="https://doi.org/10.1007/s12601-026-00292-8">doi:10.1007/s12601-026-00292-8</a>
+        </li>
+        <li>
+          Jang, D.-K., <b>Lee, K.-M.</b>, Thieulot, C., Choi, W.-H., &amp; So, B.-D. (2025).
+          Efficient Uzawa algorithms with projection strategies for geodynamic Stokes flow.
+          <span class="status">Accepted</span>
+          <a href="https://egusphere.copernicus.org/preprints/2025/egusphere-2025-5480/">Preprint (EGUsphere)</a>
+        </li>
+        <li>
+          Jang, C.-H., So, B.-D., <b>Lee, K.-M.</b>, &amp; Kim, H. N. (2025).
+          Integrated modeling of thermal decarbonation and three-dimensional poroelastic fluid behavior: Assessment of stored CO<sub>2</sub> leakage along carbonate fault.
+          <em>Engineering Geology</em>, 352, 108065.
+          <a href="https://doi.org/10.1016/j.enggeo.2025.108065">doi:10.1016/j.enggeo.2025.108065</a>
+        </li>
+      </ol>
     </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>
-        Email: <a href="mailto:kyeong_min@kangwon.ac.kr">kyeong_min@kangwon.ac.kr</a><br>
-        Kangwon National University, Chuncheon, Republic of Korea
-        <!-- Google Scholar, ORCID, GitHub 링크를 여기에 추가 -->
-      </p>
-    </section>
   </main>
 
   <script src="rt-frames.js"></script>
